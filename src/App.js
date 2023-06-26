@@ -17,7 +17,7 @@ const App = () => {
         entry.id === input || entry.name === input
     );
     if (entry) {
-      setResult(`The rarity rank of Frackin Frog #${entry.name} is ${entry.rarityRank}.`);
+      setResult(`The rarity rank of Frackin Frog #${entry.name} is ${entry.rarityRank}/1800.`);
     } else {
       setResult(`No entry found with ID or name: ${input}`);
     }
@@ -30,14 +30,15 @@ const App = () => {
 
   return (
     <div className="app">
-      <div className="centered-column">
-        <img src={logo} alt="logo" className="logo" />
+      <div className="centered-column"> {/* this is the new div */}
+        <img src={logo} alt="logo" className="logo"/>
         <div className="form-container">
+          <h2>Frack Rarity Check</h2> {/* Added line to display "Check Rarity" */}
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={input}
-              onChange={handleInputChange}
+            <input 
+              type="text" 
+              value={input} 
+              onChange={handleInputChange} 
             />
             <button type="submit">Check</button>
           </form>

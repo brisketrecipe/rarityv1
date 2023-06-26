@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import database from './database2';
+import logo from './logo.png';
 
-function App() {
+const App = () => {
+  const [input, setInput] = useState('');
+  const [result, setResult] = useState(null);
+
+  const handleInputChange = (event) => {
+    setInput(event.target.value);
+  }
+
+  const handleCheckClick = () => {
+    const entry = database.find(
+      (entry) =>
+        entry.id === input || entry.name === input
+    );
+    if (entry) {
+      setResult(`The rarity rank of Frackin Frog #${entry.name} is ${entry.rarityRank}.`);
+    } else {
+      setResult(`No entry found with ID or name: ${input}`);
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleCheckClick();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="centered-column">
+        <img src={logo} alt="logo" className="logo" />
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={input}
+              onChange={handleInputChange}
+            />
+            <button type="submit">Check</button>
+          </form>
+          {result && <p>{result}</p>}
+        </div>
+      </div>
     </div>
   );
 }

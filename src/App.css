@@ -1,6 +1,27 @@
-.App {
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
   text-align: center;
+  background-color: #F4921D;
+  padding-bottom: 100vh; 
+
 }
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  width: 420px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white; 
+}
+
 
 .App-logo {
   height: 40vmin;
